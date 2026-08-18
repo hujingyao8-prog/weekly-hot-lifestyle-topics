@@ -1,0 +1,68 @@
+name: Weekly Hot Topic Report
+
+on:
+  # ── Auto trigger: every Monday at 09:00 UTC+8 (01:00 UTC) ──
+  schedule:
+    - cron: '0 1 * * 1'
+  # ── Manual trigger with optional date override ──
+  workflow_dispatch:
+    inputs:
+      report_date:
+        description: 'Report date (YYYY-MM-DD). Leave blank to use today.'
+        required: false
+        default: ''
+
+jobs:
+  build-and-notify:
+    runs-on: ubuntu-latest
+
+    steps:
+      # 1. Check out the repo (for committing generated reports)
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      # 2. Set up Python
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install dependencies
+        run: pip install requests
+
+      # 3. Generate Chinese report
+      #    ─ Replace this step with your actual KimiWork / generation command ─
+      - name: Generate Chinese HTML report
+        env:
+          REPORT_DATE: ${{ github.event.inputs.report_date }}
+        run: |
+          DATE="${REPORT_DATE:-$(date +%Y-%m-%d)}"
+          echo "Generating report for $DATE"
+          # TODO: replace the line below with your real generation command
+          # e.g. python generate_report.py --date "$DATE" --out "report-${DATE}.html"
+          echo "<html><body><h1>Weekly Report ${DATE}</h1></body></html>" \
+            > "report-${DATE}.html"
+          echo "REPORT_DATE=${DATE}" >> $GITHUB_ENV
+          echo "ZH_FILE=report-${DATE}.html" >> $GITHUB_ENV
+
+      # 4. Generate Russian localisation using the ru-report-localizer skill logic
+      #    ─ This calls a Python script that mirrors the skill's translation rules ─
+      - name: Generate Russian HTML report
+        run: |
+          python pipeline/localize_ru.py \
+            --input "$ZH_FILE" \
+            --output "report-${REPORT_DATE}-ru.html"
+          echo "RU_FILE=report-${REPORT_DATE}-ru.html" >> $GITHUB_ENV
+
+      # 5. Upload both files & send Telegram message
+      - name: Upload & Notify
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_OWNER: ${{ github.repository_owner }}
+          GITHUB_REPO:  ${{ github.event.repository.name }}
+          TG_BOT_TOKEN: ${{ secrets.TG_BOT_TOKEN }}
+          TG_CHAT_ID:   ${{ secrets.TG_CHAT_ID }}
+        run: |
+          python pipeline/upload_and_notify.py \
+            --zh "$ZH_FILE" \
+            --ru "$RU_FILE"
