@@ -1,0 +1,735 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Lifestyle Trend Report — Likee RU | 31.08.2026</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@7.3.0/css/all.min.css">
+  <style>
+    :root {
+      --pink: #FF2E63;
+      --pink-deep: #E01A4F;
+      --pink-light: #FFE4EC;
+      --pink-faint: #FFF4F7;
+      --ink: #1A1A1A;
+      --gray: #8A8A8A;
+      --line: #F0D8E0;
+      --white: #FFFFFF;
+      --font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Microsoft YaHei", Arial, sans-serif;
+      --radius: 10px;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: var(--font-sans); background: #fafafa; color: var(--ink); font-size: 14px; line-height: 1.6; }
+    a { color: var(--pink); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    /* HEADER */
+    .site-header {
+      background: var(--white);
+      border-bottom: 2px solid var(--line);
+      padding: 14px 24px;
+      display: flex; align-items: center; justify-content: space-between;
+      flex-wrap: wrap; gap: 12px;
+      position: sticky; top: 0; z-index: 100;
+    }
+    .logo-img { height: 40px; width: auto; display: block; }
+    .meta-badges { display: flex; gap: 8px; flex-wrap: wrap; align-items: center; }
+    .meta-item {
+      font-size: 12px; background: var(--pink-faint);
+      border: 1px solid var(--line); color: var(--gray);
+      padding: 3px 10px; border-radius: 20px;
+    }
+    .meta-item strong { color: var(--pink); }
+
+    /* LAYOUT */
+    .report-shell { max-width: 1200px; margin: 0 auto; padding: 24px 16px 48px; }
+    .report-title-block { margin-bottom: 32px; padding-bottom: 20px; border-bottom: 1px solid var(--line); }
+    .report-title-block h1 { font-size: 26px; font-weight: 800; color: var(--ink); margin-bottom: 6px; }
+    .report-title-block p { color: var(--gray); font-size: 13px; }
+    .week-tag {
+      display: inline-block; background: var(--pink); color: #fff;
+      font-size: 12px; font-weight: 700; padding: 2px 10px;
+      border-radius: 20px; margin-right: 8px;
+    }
+
+    /* SECTIONS */
+    .section { margin-bottom: 40px; }
+    .section h2 {
+      font-size: 18px; font-weight: 800; color: var(--ink);
+      margin-bottom: 16px; padding-bottom: 8px;
+      border-bottom: 2px solid var(--pink-light);
+      display: flex; align-items: center; gap: 8px;
+    }
+    .section h2 .num {
+      background: var(--pink); color: #fff; font-size: 11px; font-weight: 700;
+      width: 22px; height: 22px; border-radius: 50%;
+      display: inline-flex; align-items: center; justify-content: center; flex-shrink: 0;
+    }
+    .section h3 {
+      font-size: 15px; font-weight: 700; color: var(--pink-deep);
+      margin: 22px 0 10px; display: flex; align-items: center; gap: 6px;
+    }
+    .section h3::before {
+      content: ''; display: inline-block; width: 4px; height: 16px;
+      background: var(--pink); border-radius: 2px;
+    }
+
+    /* TOP-5 CARDS */
+    .top5 { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 200px), 1fr)); gap: 14px; }
+    .card {
+      background: var(--white); border: 1px solid var(--line);
+      border-radius: var(--radius); padding: 16px;
+      transition: box-shadow .2s; position: relative; overflow: hidden;
+    }
+    .card::before {
+      content: ''; position: absolute; top: 0; left: 0; right: 0;
+      height: 3px; background: var(--pink);
+    }
+    .card:hover { box-shadow: 0 4px 20px rgba(255,46,99,.12); }
+    .card .rank { font-size: 28px; font-weight: 900; color: var(--pink-light); line-height: 1; margin-bottom: 6px; }
+    .card h4 { font-size: 14px; font-weight: 700; color: var(--ink); margin-bottom: 8px; line-height: 1.4; }
+    .card p { font-size: 12px; color: var(--gray); margin-bottom: 10px; line-height: 1.5; }
+    .tags { display: flex; flex-wrap: wrap; gap: 5px; }
+    .tags span { font-size: 11px; padding: 2px 8px; border-radius: 20px; font-weight: 600; }
+
+    /* BADGES */
+    .b-boom { background: var(--pink); color: #fff; }
+    .b-rise { background: var(--pink-light); color: var(--pink-deep); }
+    .b-plat { background: #fff; color: var(--pink); border: 1px solid var(--pink); }
+    .b-fade { background: #f0f0f0; color: var(--gray); }
+    .b-ru   { background: var(--ink); color: #fff; }
+    .b-gl   { background: var(--pink-faint); color: var(--pink); border: 1px solid var(--line); }
+
+    /* CLEAN LIST */
+    ul.clean { list-style: none; padding: 0; }
+    ul.clean li {
+      padding: 10px 14px 10px 32px; position: relative;
+      border-radius: 8px; margin-bottom: 8px;
+      background: var(--white); border: 1px solid var(--line);
+      font-size: 13px; line-height: 1.6; color: var(--ink);
+    }
+    ul.clean li::before { content: '◆'; position: absolute; left: 12px; top: 10px; color: var(--pink); font-size: 10px; }
+    ul.clean li strong { color: var(--pink-deep); }
+
+    /* TABLES */
+    .tbl-wrap { overflow-x: auto; -webkit-overflow-scrolling: touch; border-radius: var(--radius); box-shadow: 0 1px 6px rgba(0,0,0,.06); margin-bottom: 8px; }
+    .tbl-wrap table { width: 100%; border-collapse: collapse; font-size: 12.5px; min-width: 700px; }
+    .tbl-wrap table thead th { background: var(--pink); color: #fff; font-weight: 700; padding: 10px 12px; text-align: left; white-space: nowrap; }
+    .tbl-wrap table tbody tr td { padding: 9px 12px; border-bottom: 1px solid var(--line); vertical-align: top; line-height: 1.5; }
+    .tbl-wrap table tbody tr:nth-child(even) td { background: var(--pink-faint); }
+    .tbl-wrap table tbody tr:hover td { background: var(--pink-light); }
+    .tbl-wrap table tbody tr:last-child td { border-bottom: none; }
+    .badge { display: inline-block; font-size: 11px; font-weight: 700; padding: 2px 8px; border-radius: 20px; }
+    .star { color: var(--pink); }
+    .platform-tag {
+      display: inline-block; font-size: 10px; font-weight: 700;
+      padding: 1px 7px; border-radius: 20px; margin: 1px;
+      background: var(--pink-faint); color: var(--pink-deep); border: 1px solid var(--line);
+    }
+
+    /* FOOTER */
+    .report-footer { text-align: center; color: var(--gray); font-size: 12px; margin-top: 40px; padding-top: 20px; border-top: 1px solid var(--line); }
+    .report-footer strong { color: var(--pink); }
+
+    @media (max-width: 600px) {
+      .site-header { padding: 10px 14px; }
+      .logo-img { height: 32px; }
+      .report-shell { padding: 14px 10px 36px; }
+      .report-title-block h1 { font-size: 20px; }
+      .section h2 { font-size: 15px; }
+    }
+  </style>
+</head>
+<body>
+
+<header class="site-header">
+  <img src="http://unionmind-asset.bigo.sg/as/bigo-cowork/4hd/21wzbmR4fiDEb.png" alt="Likee" class="logo-img">
+  <div class="meta-badges">
+    <div class="meta-item">Период: <strong>25–31 авг 2026</strong></div>
+    <div class="meta-item">Платформы: <strong>TikTok · Instagram Reels · Likee</strong></div>
+    <div class="meta-item">Фокус: <strong>RU-сегмент + осень 2026</strong></div>
+    <div class="meta-item">Язык: <strong>Русский</strong></div>
+  </div>
+</header>
+
+<main class="report-shell">
+
+  <div class="report-title-block">
+    <h1>📊 Еженедельный отчёт по лайфстайл-трендам</h1>
+    <p>
+      <span class="week-tag">Неделя 35 · 2026</span>
+      Анализ вирусного контента и трендов за 7 дней (25–31 августа 2026) по 8 вертикалям.
+      Фокус: русскоязычный сегмент + переход к осенним трендам, оценка миграции глобальных тенденций в RU.
+    </p>
+  </div>
+
+  <!-- ═══ СЕКЦИЯ 1: ТОП-5 ═══════════════════════════════════ -->
+  <section class="section">
+    <h2><span class="num">1</span>Главное за неделю</h2>
+    <div class="top5">
+
+      <div class="card">
+        <div class="rank">01</div>
+        <h4>Fall Layering: слои, мех, бахрома</h4>
+        <p>Переход к осени взрывает TikTok и Reels: «cozy layers, rich neutrals, faux fur &amp; fringe» — TikTok Discover Fall 2026, обновлён 7 дней назад. IG Reel @glamgabbychi набрал охват за 2 недели. RU-аудитория активно подхватывает образы.</p>
+        <div class="tags">
+          <span class="b-boom">🔥 Взрыв</span>
+          <span class="b-gl">Global→RU</span>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="rank">02</div>
+        <h4>Cherry Chrome Nails — маникюр августа</h4>
+        <p>TikTok @laurenashleythompson «Cherry Chrome Nail Inspo» (108 лайков, 12 авг 2026); ELLE «Chrome Nails Are Cool Again» (19 авг 2026). Хром с вишнёвыми оттенками — главный маникюр конца лета.</p>
+        <div class="tags">
+          <span class="b-boom">🔥 Взрыв</span>
+          <span class="b-ru">RU</span>
+          <span class="b-gl">Global</span>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="rank">03</div>
+        <h4>Боб и Бикси — ключевые стрижки-26</h4>
+        <p>Instagram Reel «Боб и бикси — ключевые тренды 26-го года» (8 авг 2026); Perfect Corp обновил топ-тренды волос под август 2026: halo braids, wet-look, accent buns. Активны в RU хэштеге #прическа2026 (2.1M публикаций).</p>
+        <div class="tags">
+          <span class="b-boom">🔥 Взрыв</span>
+          <span class="b-ru">RU</span>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="rank">04</div>
+        <h4>Blush Draping захватывает август</h4>
+        <p>Instagram «Blush Draping 101: How One Technique Took Over August 2026» (апр 2026, 4 мес. назад); TikTok Discover Makeup Products Trends — «glowing blush draping» первым в списке (7 дней назад). Устойчивый тренд.</p>
+        <div class="tags">
+          <span class="b-rise">↑ Рост</span>
+          <span class="b-gl">Global</span>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="rank">05</div>
+        <h4>Подружки / #bestie — женский RU-контент</h4>
+        <p>Реальные RU-Reels: @gorkunova_anya «Shall we film some trend?» (16 авг 2026); @kaaaaaatriiin «настоящая дружба» (16 авг); @smmanness «Отмечай ту самую» — три вирусных ролика за одну неделю в RU.</p>
+        <div class="tags">
+          <span class="b-rise">↑ Рост</span>
+          <span class="b-ru">RU-нативный</span>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ═══ СЕКЦИЯ 2: RU-СЕГМЕНТ ══════════════════════════════ -->
+  <section class="section">
+    <h2><span class="num">2</span>Что растёт из русскоязычного сегмента</h2>
+    <ul class="clean">
+      <li><strong>#влогизжизни (26.2K публикаций на TikTok)</strong> — хэштег стабильно растёт. @novayank выложила вlog с утренней рутиной 2 недели назад (крашение бровей, планы на день). Формат «проснулись, потянулись» — органичный RU-паттерн для Likee.</li>
+      <li><strong>#деньизжизни (TikTok)</strong> — живой тег с трендовыми видео-идеями; IG и TikTok сигнализируют о стабильном росте. Короткие «slice of life» ролики в 15–30 секунд собирают высокий retention у RU-аудитории.</li>
+      <li><strong>Боб и бикси (#прическа2026, 2.1M публикаций)</strong> — IG Reel @RU 8 авг 2026: «Боб и бикси — ключевые тренды 26-го года, универсальность и простая укладка». Активно в Москве (#москва), охватывает все возрасты от 18 до 40.</li>
+      <li><strong>RU Hair Filter / Instant Style на TikTok</strong> — TikTok Discover «Russian Hair Trend» (7 дней назад): фильтр «мгновенная смена стиля» вирусится. IG Popular «TikTok Hair Trends»: AI braid filter — самый вирусный beauty-эффект 2026. Прямой вектор для Likee AR.</li>
+      <li><strong>#подружки / #bestie RU</strong> — три конкретных RU-Reels за неделю 16–23 авг 2026: @gorkunova_anya, @kaaaaaatriiin, @smmanness, @california_nata_m_life. Тег #подруга / #подружки тренд — «отмечай ту самую» — сильный engagement-механик.</li>
+      <li><strong>Уход за кожей: Skin Barrier (TikTok, 7 дней назад)</strong> — «2026 skincare trend is all about skin barrier» в TikTok Discover; IG Barrier Restore Reel 7 мес. назад. RU beauty-аудитория адаптирует через корейские бренды и местных дерматологов.</li>
+      <li><strong>Осенний стайлинг RU</strong> — Pinterest «Russian Fashion: Autumn Winter 2026»; TikTok Discover «Russian Fashion Trends» (7 дней назад): Y2K-стили и уникальные дизайнеры. Переходный сезон усиливает интерес к «как одеться в сентябре».</li>
+      <li><strong>Dumpling Lasagna / Sushi Taco (FoodTok RU)</strong> — TikTok Food Trends 2026 Topic (7 дней назад): «dumpling lasagna, Biscoff cheesecake, sushi taco» в топ-18. IG Viral Recipes 2026: 297K views. RU food-блогеры начинают адаптации с российскими продуктами.</li>
+    </ul>
+  </section>
+
+  <!-- ═══ СЕКЦИЯ 3: ПО ВЕРТИКАЛЯМ ═══════════════════════════ -->
+  <section class="section">
+    <h2><span class="num">3</span>По вертикалям</h2>
+
+    <!-- 3.1 SKINCARE -->
+    <h3>💆 Уход за кожей (Skincare)</h3>
+    <div class="tbl-wrap">
+      <table>
+        <thead><tr>
+          <th>Тренд</th><th>Тип</th><th>Платформа</th>
+          <th>Пример видео</th><th>Страница хештега</th>
+          <th>Доказательства</th><th>Фаза</th><th>Что делаем в Likee</th>
+        </tr></thead>
+        <tbody>
+          <tr>
+            <td><strong>Skin Barrier Care</strong></td>
+            <td><span class="badge b-boom">UGC/образование</span></td>
+            <td><span class="platform-tag">TikTok</span><span class="platform-tag">Reels</span></td>
+            <td><a href="https://www.tiktok.com/discover/skin-care-trends-2026" target="_blank">TikTok Discover</a></td>
+            <td><a href="https://www.tiktok.com/discover/skin-care-trends-2026" target="_blank">#skinbarrier</a></td>
+            <td>TikTok Discover «Skin Care Trends 2026», обновлён 7 дней назад; IG Barrier Restore Reel</td>
+            <td><span class="badge b-boom">Взрыв</span></td>
+            <td>Серия «Укрепи барьер» с RU дерматологами на Likee</td>
+          </tr>
+          <tr>
+            <td><strong>Skinimalism / Gentle Routines</strong></td>
+            <td><span class="badge b-rise">Философия</span></td>
+            <td><span class="platform-tag">Reels</span></td>
+            <td><a href="https://www.instagram.com/reel/DS0N0MJDLn2/" target="_blank">IG «Kinder era»</a></td>
+            <td><a href="https://meetglimpse.com/trends/skincare-trends/" target="_blank">#skinimalism</a></td>
+            <td>IG Reel @skinsclinic_ «new era of skincare»; meetglimpse Top 33 Trends Jan 2026</td>
+            <td><span class="badge b-rise">Рост</span></td>
+            <td>«Минимум, максимум эффект» — контент-рубрика Likee</td>
+          </tr>
+          <tr>
+            <td><strong>SPF Lip Balm / Eye Sunscreen</strong></td>
+            <td><span class="badge b-gl">Global</span></td>
+            <td><span class="platform-tag">TikTok</span></td>
+            <td><a href="https://meetglimpse.com/trends/skincare-trends/" target="_blank">Meetglimpse</a></td>
+            <td><a href="https://meetglimpse.com/trends/skincare-trends/" target="_blank">#SPFlips</a></td>
+            <td>Meetglimpse Top 33 Skincare Trends 2026 (Jan 15, 2026)</td>
+            <td><span class="badge b-rise">Рост</span></td>
+            <td>Review-формат SPF-бальзамов от RU бьюти-блогеров</td>
+          </tr>
+          <tr>
+            <td><strong>Cooling Sensations / Cryotherapy</strong></td>
+            <td><span class="badge b-rise">Процедура</span></td>
+            <td><span class="platform-tag">TikTok</span><span class="platform-tag">Reels</span></td>
+            <td><a href="https://www.beautyindependent.com/top-skincare-trends-2026-those-losing-sizzle/" target="_blank">Beauty Independent</a></td>
+            <td>–</td>
+            <td>Beauty Independent: «cooling sensations» — топ-тренд 2026 по мнению отраслевых экспертов</td>
+            <td><span class="badge b-plat">Плато</span></td>
+            <td>Видео-эксперимент «Лёд для лица» с RU блогерами</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- 3.2 OUTFIT -->
+    <h3>👗 Стиль и образы (Outfit Styling)</h3>
+    <div class="tbl-wrap">
+      <table>
+        <thead><tr>
+          <th>Тренд</th><th>Тип</th><th>Платформа</th>
+          <th>Пример видео</th><th>Страница хештега</th>
+          <th>Доказательства</th><th>Фаза</th><th>Что делаем в Likee</th>
+        </tr></thead>
+        <tbody>
+          <tr>
+            <td><strong>Fall 2026: Faux Fur + Fringe + Layers</strong></td>
+            <td><span class="badge b-boom">Сезонный переход</span></td>
+            <td><span class="platform-tag">TikTok</span><span class="platform-tag">Reels</span></td>
+            <td><a href="https://www.instagram.com/glamgabbychi/reel/Db6qaHpyYKM/" target="_blank">@glamgabbychi Fall 2026</a></td>
+            <td><a href="https://www.tiktok.com/discover/fall-2026-fashion-trends" target="_blank">#fall2026</a></td>
+            <td>TikTok Discover Fall Trends (7 дней назад); IG Reel @glamgabbychi (2 нед. назад); Coveteur Aug 12 2026</td>
+            <td><span class="badge b-boom">Взрыв</span></td>
+            <td>Осенний lookbook-challenge «Первый слой» на Likee</td>
+          </tr>
+          <tr>
+            <td><strong>Cherry Red Accents</strong></td>
+            <td><span class="badge b-boom">Цвет сезона</span></td>
+            <td><span class="platform-tag">TikTok</span><span class="platform-tag">Reels</span></td>
+            <td><a href="https://daniellegervino.com/fall-fashion-trends-2026/" target="_blank">Danielle Gervino</a></td>
+            <td><a href="https://www.tiktok.com/discover/fall-2026-fashion-trends" target="_blank">#cherryred</a></td>
+            <td>Danielle Gervino «7 Fall Trends 2026»: cherry red accents; ELLE Aug 11 2026 Fall Trends</td>
+            <td><span class="badge b-boom">Взрыв</span></td>
+            <td>Цвет-челлендж «Вишнёвый сентябрь» в Likee Stories</td>
+          </tr>
+          <tr>
+            <td><strong>Russian Y2K &amp; Iconic Designers TikTok</strong></td>
+            <td><span class="badge b-ru">RU-оригинал</span></td>
+            <td><span class="platform-tag">TikTok</span></td>
+            <td><a href="https://www.tiktok.com/discover/russian-fashion-trends?lang=en" target="_blank">TikTok Discover RU</a></td>
+            <td><a href="https://www.tiktok.com/discover/russian-fashion-trends?lang=en" target="_blank">#русскаямода</a></td>
+            <td>TikTok Discover «Russian Fashion Trends» (7 дней назад): Y2K + local designers</td>
+            <td><span class="badge b-rise">Рост</span></td>
+            <td>Серия «Русские дизайнеры в TikTok» — Likee партнёрства</td>
+          </tr>
+          <tr>
+            <td><strong>Multi-Layered Tops / Napoleon Jackets</strong></td>
+            <td><span class="badge b-gl">Global→RU</span></td>
+            <td><span class="platform-tag">TikTok</span></td>
+            <td><a href="https://www.whowhatwear.com/fashion/trends/tiktok-fashion-trends-2026" target="_blank">Who What Wear</a></td>
+            <td><a href="https://www.whowhatwear.com/fashion/trends/tiktok-fashion-trends-2026" target="_blank">#layeredtops</a></td>
+            <td>Who What Wear «7 Biggest TikTok Fashion Trends 2026»: multi-layered tops официально в тренде</td>
+            <td><span class="badge b-rise">Рост</span></td>
+            <td>Стайлинг-гайд «Многослойный образ» для RU аудитории Likee</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- 3.3 HAIRCARE -->
+    <h3>💇 Причёски и уход за волосами (Haircare &amp; Hairstyling)</h3>
+    <div class="tbl-wrap">
+      <table>
+        <thead><tr>
+          <th>Тренд</th><th>Тип</th><th>Платформа</th>
+          <th>Пример видео</th><th>Страница хештега</th>
+          <th>Доказательства</th><th>Фаза</th><th>Что делаем в Likee</th>
+        </tr></thead>
+        <tbody>
+          <tr>
+            <td><strong>Боб и Бикси 2026</strong></td>
+            <td><span class="badge b-ru">RU-нативный</span></td>
+            <td><span class="platform-tag">Reels</span></td>
+            <td><a href="https://www.instagram.com/reel/Dbxh22RBOhZ/" target="_blank">IG Reel 08.08.2026</a></td>
+            <td><a href="https://www.instagram.com/popular/russian-womens-hairstyles-2026/" target="_blank">#прическа2026 (2.1M)</a></td>
+            <td>IG Reel «Боб и бикси — ключевые тренды», 8 авг 2026; IG Popular RU Hairstyles 2026: 2.1M posts</td>
+            <td><span class="badge b-boom">Взрыв</span></td>
+            <td>Tutorial «Боб за 60 секунд» + Likee AR стрижка-фильтр</td>
+          </tr>
+          <tr>
+            <td><strong>Halo Braids + Accent Buns</strong></td>
+            <td><span class="badge b-rise">Обновлённый стиль</span></td>
+            <td><span class="platform-tag">TikTok</span><span class="platform-tag">Reels</span></td>
+            <td><a href="https://www.perfectcorp.com/consumer/blog/hair/hair-trends" target="_blank">Perfect Corp Aug 2026</a></td>
+            <td><a href="https://www.tiktok.com/discover/best-hairstyles-in-2026" target="_blank">#halobraid</a></td>
+            <td>Perfect Corp обновил август 2026: «halo braids and wet-look styling»; TikTok Discover Best Hairstyles 18.5K лайков</td>
+            <td><span class="badge b-rise">Рост</span></td>
+            <td>«Корона из кос» — Likee UGC марафон с AR-эффектом</td>
+          </tr>
+          <tr>
+            <td><strong>AI Braid Filter (вирусный эффект)</strong></td>
+            <td><span class="badge b-boom">AR-тренд</span></td>
+            <td><span class="platform-tag">TikTok</span><span class="platform-tag">Reels</span></td>
+            <td><a href="https://www.instagram.com/popular/tiktok-hair-trends/" target="_blank">IG TikTok Hair Trends</a></td>
+            <td><a href="https://www.instagram.com/popular/tiktok-hair-trends/" target="_blank">#AIbraid</a></td>
+            <td>IG Popular «TikTok Hair Trends»: «AI braid filter — viral effect 2026, lets users test braided styles instantly»</td>
+            <td><span class="badge b-boom">Взрыв</span></td>
+            <td>Приоритет: разработать аналогичный AR-эффект для Likee</td>
+          </tr>
+          <tr>
+            <td><strong>Glass Hair + Silk Scarf Styling</strong></td>
+            <td><span class="badge b-gl">Global→RU</span></td>
+            <td><span class="platform-tag">TikTok</span></td>
+            <td><a href="https://www.tiktok.com/discover/best-hairstyles-in-2026" target="_blank">TikTok Best Hairstyles</a></td>
+            <td><a href="https://www.tiktok.com/discover/best-hairstyles-in-2026" target="_blank">#glasshair</a></td>
+            <td>TikTok Discover 2026: «glass hair and silk scarf styling» — здоровые, блестящие волосы в тренде</td>
+            <td><span class="badge b-rise">Рост</span></td>
+            <td>«Стеклянные волосы» GRWM-серия с RU стилистами на Likee</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- 3.4 GIRLS CHAT -->
+    <h3>💬 Подружки и женские темы (Girls' Chat)</h3>
+    <div class="tbl-wrap">
+      <table>
+        <thead><tr>
+          <th>Тренд</th><th>Тип</th><th>Платформа</th>
+          <th>Пример видео</th><th>Страница хештега</th>
+          <th>Доказательства</th><th>Фаза</th><th>Что делаем в Likee</th>
+        </tr></thead>
+        <tbody>
+          <tr>
+            <td><strong>«Отмечай ту самую» — тег подруги</strong></td>
+            <td><span class="badge b-ru">RU-нативный</span></td>
+            <td><span class="platform-tag">Reels</span></td>
+            <td><a href="https://www.instagram.com/smmanness/reel/DcGKcXvgVHc/" target="_blank">@smmanness 16 авг</a></td>
+            <td><a href="https://www.instagram.com/california_nata_m_life/reel/DcHcci8J9Qt/" target="_blank">#подруга #bestie</a></td>
+            <td>Три RU-Reels за 16–17 авг 2026: @smmanness, @gorkunova_anya, @california_nata_m_life — все с тегом #подруга</td>
+            <td><span class="badge b-boom">Взрыв</span></td>
+            <td>Duet-challenge «Моя лучшая» на Likee с механикой тегирования</td>
+          </tr>
+          <tr>
+            <td><strong>«Настоящая дружба» — ностальгический контент</strong></td>
+            <td><span class="badge b-ru">RU-эмоция</span></td>
+            <td><span class="platform-tag">Reels</span></td>
+            <td><a href="https://www.instagram.com/kaaaaaatriiin/reel/DcGeUjCIKs_/" target="_blank">@kaaaaaatriiin 16 авг</a></td>
+            <td><a href="https://www.instagram.com/kaaaaaatriiin/reel/DcGeUjCIKs_/" target="_blank">#подружки</a></td>
+            <td>@kaaaaaatriiin: «У каждой из нас своя семья... стоит нам встретиться — будто ничего не изменилось» — высокий ER</td>
+            <td><span class="badge b-rise">Рост</span></td>
+            <td>Likee Stories формат «письмо подруге» + музыкальный фон</td>
+          </tr>
+          <tr>
+            <td><strong>Summer Glow Up финальная фаза</strong></td>
+            <td><span class="badge b-gl">Global</span></td>
+            <td><span class="platform-tag">TikTok</span></td>
+            <td><a href="https://www.dashsocial.com/blog/tiktok-hashtags" target="_blank">DashSocial Jul 2026</a></td>
+            <td><a href="https://www.dashsocial.com/blog/tiktok-hashtags" target="_blank">#summerglowup (7.1K)</a></td>
+            <td>DashSocial July 2026 Beauty Hashtags: #summerglowup 7.1K — конец сезона «гоу-ап» контента</td>
+            <td><span class="badge b-plat">Плато</span></td>
+            <td>«Итоги лета» recap-формат для RU девушек на Likee</td>
+          </tr>
+          <tr>
+            <td><strong>Slow Living / Осознанность</strong></td>
+            <td><span class="badge b-rise">Нишевый</span></td>
+            <td><span class="platform-tag">Reels</span></td>
+            <td><a href="https://www.heepsy.com/top-youtube/lifestyle/russia" target="_blank">Heepsy RU Aug 2026</a></td>
+            <td>–</td>
+            <td>Heepsy: топ-10 RU Lifestyle YouTube инфлюенсеров август 2026 — slow living как устойчивая ниша</td>
+            <td><span class="badge b-plat">Плато</span></td>
+            <td>«Минута тишины» — Likee Stories 30-сек. формат</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- 3.5 DAILY VLOG -->
+    <h3>📹 Ежедневный влог (Daily Life Vlog)</h3>
+    <div class="tbl-wrap">
+      <table>
+        <thead><tr>
+          <th>Тренд</th><th>Тип</th><th>Платформа</th>
+          <th>Пример видео</th><th>Страница хештега</th>
+          <th>Доказательства</th><th>Фаза</th><th>Что делаем в Likee</th>
+        </tr></thead>
+        <tbody>
+          <tr>
+            <td><strong>#влогизжизни (26.2K публикаций)</strong></td>
+            <td><span class="badge b-ru">RU-нативный</span></td>
+            <td><span class="platform-tag">TikTok</span></td>
+            <td><a href="https://www.tiktok.com/tag/%D0%B2%D0%BB%D0%BE%D0%B3%D0%B8%D0%B7%D0%B6%D0%B8%D0%B7%D0%BD%D0%B8" target="_blank">TikTok #влогизжизни</a></td>
+            <td><a href="https://www.tiktok.com/tag/%D0%B2%D0%BB%D0%BE%D0%B3%D0%B8%D0%B7%D0%B6%D0%B8%D0%B7%D0%BD%D0%B8" target="_blank">#влогизжизни</a></td>
+            <td>TikTok: тег #влогизжизни насчитывает 26.2K публикаций; тег #деньизжизни активен с трендовыми идеями</td>
+            <td><span class="badge b-boom">Взрыв</span></td>
+            <td>Еженедельный «Мой день» на Likee с единым брендовым тегом</td>
+          </tr>
+          <tr>
+            <td><strong>Утренняя рутина RU (Today vlog)</strong></td>
+            <td><span class="badge b-ru">RU-формат</span></td>
+            <td><span class="platform-tag">Reels</span></td>
+            <td><a href="https://www.instagram.com/novayank/reel/Db7qG5hOVgf/" target="_blank">@novayank Today vlog</a></td>
+            <td><a href="https://www.instagram.com/novayank/reel/Db7qG5hOVgf/" target="_blank">#утреннийвлог</a></td>
+            <td>@novayank IG Reel «Today vlog: утренняя рутина» — активный RU-контент 2 нед. назад</td>
+            <td><span class="badge b-rise">Рост</span></td>
+            <td>GRWM Morning Series на Likee — 30-сек. вертикальный формат</td>
+          </tr>
+          <tr>
+            <td><strong>Russia Daily Vlog (TikTok English)</strong></td>
+            <td><span class="badge b-gl">RU→Global</span></td>
+            <td><span class="platform-tag">TikTok</span></td>
+            <td><a href="https://www.tiktok.com/@arina_talks/video/7600900584945831181" target="_blank">@arina_talks</a></td>
+            <td>–</td>
+            <td>TikTok @arina_talks «Exploring Life in Russia: A Personal Daily Vlog» — экспорт RU-лайфстайла на English аудиторию</td>
+            <td><span class="badge b-rise">Рост</span></td>
+            <td>Bilingual Likee-контент для диаспоры и иностранных зрителей</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- 3.6 MAKEUP -->
+    <h3>💄 Макияж (Makeup)</h3>
+    <div class="tbl-wrap">
+      <table>
+        <thead><tr>
+          <th>Тренд</th><th>Тип</th><th>Платформа</th>
+          <th>Пример видео</th><th>Страница хештега</th>
+          <th>Доказательства</th><th>Фаза</th><th>Что делаем в Likee</th>
+        </tr></thead>
+        <tbody>
+          <tr>
+            <td><strong>Blush Draping 101</strong></td>
+            <td><span class="badge b-boom">Техника</span></td>
+            <td><span class="platform-tag">TikTok</span><span class="platform-tag">Reels</span></td>
+            <td><a href="https://www.instagram.com/p/DXKstj5jtXl/" target="_blank">IG «Blush Draping 101»</a></td>
+            <td><a href="https://www.tiktok.com/discover/makeup-products-trends-2026" target="_blank">#blushdrapng</a></td>
+            <td>IG Post «Blush Draping: How One Technique Took Over August 2026»; TikTok Discover первым в списке</td>
+            <td><span class="badge b-boom">Взрыв</span></td>
+            <td>Likee AR Beauty Filter «Sunset Blush» + tutorial от RU бьюти-блогеров</td>
+          </tr>
+          <tr>
+            <td><strong>Graphic Eyeliner + Monochrome Eyes</strong></td>
+            <td><span class="badge b-rise">Bold Makeup</span></td>
+            <td><span class="platform-tag">TikTok</span><span class="platform-tag">Reels</span></td>
+            <td><a href="https://www.qcmakeupacademy.com/blog/2026/01/makeup-trends-2026-bold-makeup-is-back" target="_blank">QC Makeup Academy</a></td>
+            <td><a href="https://www.tiktok.com/discover/makeup-products-trends-2026" target="_blank">#graphiceyeliner</a></td>
+            <td>QC Makeup Academy Jan 2026: «Eye makeup trends lead in 2026: graphic eyeliner, monochrome eyes»</td>
+            <td><span class="badge b-rise">Рост</span></td>
+            <td>«Дерзкий взгляд» challenge с RU визажистами на Likee</td>
+          </tr>
+          <tr>
+            <td><strong>Ballet Slipper Pink Lips</strong></td>
+            <td><span class="badge b-rise">Нежный</span></td>
+            <td><span class="platform-tag">Reels</span></td>
+            <td><a href="https://www.allure.com/story/spring-makeup-trends-2026" target="_blank">Allure Spring 2026</a></td>
+            <td><a href="https://www.tiktok.com/discover/makeup-products-trends-2026" target="_blank">#pinklips</a></td>
+            <td>Allure Mar 2026: «ballet slipper pink lips» — весенний тренд с продолжением летом</td>
+            <td><span class="badge b-plat">Плато</span></td>
+            <td>«Балетные губы» — осенняя адаптация в тёплых тонах на Likee</td>
+          </tr>
+          <tr>
+            <td><strong>Melted Matte Lips</strong></td>
+            <td><span class="badge b-rise">Текстура</span></td>
+            <td><span class="platform-tag">TikTok</span></td>
+            <td><a href="https://www.whowhatwear.com/beauty/makeup/makeup-trends-2026" target="_blank">Who What Wear</a></td>
+            <td><a href="https://www.tiktok.com/discover/makeup-products-trends-2026" target="_blank">#mattelips</a></td>
+            <td>Who What Wear: «Melted Matte Lips» в топ-трендах макияжа 2026</td>
+            <td><span class="badge b-rise">Рост</span></td>
+            <td>Осенний лип-тренд — тёплые мат-тона для RU аудитории Likee</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- 3.7 NAIL ART -->
+    <h3>💅 Маникюр (Nail Art)</h3>
+    <div class="tbl-wrap">
+      <table>
+        <thead><tr>
+          <th>Тренд</th><th>Тип</th><th>Платформа</th>
+          <th>Пример видео</th><th>Страница хештега</th>
+          <th>Доказательства</th><th>Фаза</th><th>Что делаем в Likee</th>
+        </tr></thead>
+        <tbody>
+          <tr>
+            <td><strong>Cherry Chrome Nails</strong></td>
+            <td><span class="badge b-boom">Цвет августа</span></td>
+            <td><span class="platform-tag">TikTok</span><span class="platform-tag">Reels</span></td>
+            <td><a href="https://www.tiktok.com/@laurenashleythompson/video/7673319525181426957" target="_blank">TikTok @laurenashleythompson</a></td>
+            <td><a href="https://www.elle.com/beauty/makeup-skin-care/a73368559/best-chrome-nails-designs/" target="_blank">#cherrychromenails</a></td>
+            <td>TikTok «Cherry Chrome Nail Inspo» Aug 12 2026; ELLE «Chrome Nails Are Cool Again» Aug 19 2026</td>
+            <td><span class="badge b-boom">Взрыв</span></td>
+            <td>Nail Art challenge с AR хром+вишня эффектом на Likee</td>
+          </tr>
+          <tr>
+            <td><strong>Jelly Edition Nails (август)</strong></td>
+            <td><span class="badge b-boom">Прозрачный лак</span></td>
+            <td><span class="platform-tag">TikTok</span></td>
+            <td><a href="https://www.tiktok.com/@bwaterson/video/7665467870687628558" target="_blank">@bwaterson «Jelly edition»</a></td>
+            <td><a href="https://www.tiktok.com/@bwaterson/video/7665467870687628558" target="_blank">#nailtrends #jellynails</a></td>
+            <td>TikTok @bwaterson «August 2026 nail trends: Jelly edition» 244 лайка (Jul 22 2026)</td>
+            <td><span class="badge b-boom">Взрыв</span></td>
+            <td>UGC «Мой желе-маникюр» + Likee стикеры-наклейки</td>
+          </tr>
+          <tr>
+            <td><strong>Sunrise Chrome Tones</strong></td>
+            <td><span class="badge b-rise">Летний хром</span></td>
+            <td><span class="platform-tag">Reels</span></td>
+            <td><a href="https://www.instagram.com/p/DZcCjOGiIJu/" target="_blank">IG «Sunrise Chrome»</a></td>
+            <td><a href="https://www.instagram.com/reel/DXUXeoUEYER/" target="_blank">#chromenails</a></td>
+            <td>IG «Chrome nails: radiant sunrise tones, vibrant hues» Jun 2026; americasbeautyshow Apr 2026</td>
+            <td><span class="badge b-plat">Плато</span></td>
+            <td>Партнёрство с RU nail-студиями — закатный хром Likee</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- 3.8 FOOD -->
+    <h3>🍜 Еда и рецепты (Food)</h3>
+    <div class="tbl-wrap">
+      <table>
+        <thead><tr>
+          <th>Тренд</th><th>Тип</th><th>Платформа</th>
+          <th>Пример видео</th><th>Страница хештега</th>
+          <th>Доказательства</th><th>Фаза</th><th>Что делаем в Likee</th>
+        </tr></thead>
+        <tbody>
+          <tr>
+            <td><strong>Dumpling Lasagna</strong></td>
+            <td><span class="badge b-boom">Вирусный рецепт</span></td>
+            <td><span class="platform-tag">TikTok</span></td>
+            <td><a href="https://www.tiktok.com/topic/tiktok-food-trends-2026?lang=en" target="_blank">TikTok Food Topic</a></td>
+            <td><a href="https://www.tiktok.com/topic/tiktok-food-trends-2026?lang=en" target="_blank">#dumplinglasagna</a></td>
+            <td>TikTok Food Trends 2026 Topic (7 дней назад): в топ-18 trending foods 2026</td>
+            <td><span class="badge b-boom">Взрыв</span></td>
+            <td>«Пельменная лазанья» — RU-адаптация с пельменями Likee FoodChallenge</td>
+          </tr>
+          <tr>
+            <td><strong>Biscoff Cheesecake</strong></td>
+            <td><span class="badge b-boom">Десерт-хит</span></td>
+            <td><span class="platform-tag">TikTok</span><span class="platform-tag">Reels</span></td>
+            <td><a href="https://www.instagram.com/popular/viral-tiktok-recipes-2026/" target="_blank">IG Viral Recipes 2026</a></td>
+            <td><a href="https://www.tiktok.com/topic/tiktok-food-trends-2026?lang=en" target="_blank">#biscoffcheesecake</a></td>
+            <td>TikTok Food Topic топ-18; IG Viral Recipes 2026 (297K views «most viral recipe»)</td>
+            <td><span class="badge b-boom">Взрыв</span></td>
+            <td>«Чизкейк Биcкоф» tutorial от RU кондитеров на Likee</td>
+          </tr>
+          <tr>
+            <td><strong>Sushi Taco</strong></td>
+            <td><span class="badge b-rise">Фьюжн</span></td>
+            <td><span class="platform-tag">TikTok</span></td>
+            <td><a href="https://www.tiktok.com/topic/tiktok-food-trends-2026?lang=en" target="_blank">TikTok Food Topic</a></td>
+            <td><a href="https://www.tiktok.com/topic/tiktok-food-trends-2026?lang=en" target="_blank">#sushitaco</a></td>
+            <td>TikTok Food Trends 2026 Topic — «sushi taco ideas» в списке топ-18</td>
+            <td><span class="badge b-rise">Рост</span></td>
+            <td>«Суши-тако по-московски» — RU food-блогеры на Likee</td>
+          </tr>
+          <tr>
+            <td><strong>Ramen Seafood Boil</strong></td>
+            <td><span class="badge b-rise">Азиатский фьюжн</span></td>
+            <td><span class="platform-tag">TikTok</span></td>
+            <td><a href="https://www.tiktok.com/topic/tiktok-food-trends-2026?lang=en" target="_blank">TikTok Food Topic</a></td>
+            <td><a href="https://www.tiktok.com/topic/tiktok-food-trends-2026?lang=en" target="_blank">#ramenseafood</a></td>
+            <td>TikTok Food Trends 2026: «ramen seafood boil trend» в топ-18</td>
+            <td><span class="badge b-rise">Рост</span></td>
+            <td>Видео «Рамен с морепродуктами» под RU рецепт на Likee</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+  </section>
+
+  <!-- ═══ СЕКЦИЯ 4: ГЛОБАЛ → RU ══════════════════════════════ -->
+  <section class="section">
+    <h2><span class="num">4</span>Что переносим из глобала в RU</h2>
+    <div class="tbl-wrap">
+      <table>
+        <thead><tr>
+          <th>Глобальный тренд</th>
+          <th>Переносимость (★)</th>
+          <th>Почему</th>
+          <th>Действие</th>
+        </tr></thead>
+        <tbody>
+          <tr>
+            <td><strong>Cherry Chrome Nails</strong><br><small>ELLE Aug 19 · TikTok Aug 12 2026</small></td>
+            <td><span class="star">★★★★★</span></td>
+            <td>Визуальный тренд не требует локализации. RU nail-аудитория огромна. Хром + вишня = цвет августа→сентября. Высокий UGC-потенциал.</td>
+            <td>Nail challenge + Likee AR хром-фильтр в вишнёвых тонах</td>
+          </tr>
+          <tr>
+            <td><strong>Blush Draping (макияж)</strong><br><small>IG Aug 2026 · TikTok Discover 7 дней назад</small></td>
+            <td><span class="star">★★★★★</span></td>
+            <td>Техника визуальна — туториал без слов. RU beauty-аудитория следит за глобальными трендами. Продолжает захватывать август→сентябрь.</td>
+            <td>AR Beauty Filter «Sunset Blush» + challenge от RU визажистов</td>
+          </tr>
+          <tr>
+            <td><strong>AI Braid Filter (hair AR)</strong><br><small>IG Popular TikTok Hair Trends 2026</small></td>
+            <td><span class="star">★★★★★</span></td>
+            <td>AR-эффект — платформо-независимый формат. Мгновенный результат без стрижки. Прямой вектор для Likee AR-разработки.</td>
+            <td>Разработка собственного Likee AI Braid / Style AR-эффекта</td>
+          </tr>
+          <tr>
+            <td><strong>Fall Layering: Faux Fur + Fringe</strong><br><small>Coveteur Aug 12 · IG Reel Aug 2026</small></td>
+            <td><span class="star">★★★★☆</span></td>
+            <td>Осенний сезон начинается. RU аудитория активно интересуется «что носить в сентябре». Требует адаптации под климат (Москва, Питер — холоднее).</td>
+            <td>Lookbook «Первый осенний образ» — таргет крупные RU города на Likee</td>
+          </tr>
+          <tr>
+            <td><strong>Dumpling Lasagna (FoodTok)</strong><br><small>TikTok Food Topic 7 дней назад</small></td>
+            <td><span class="star">★★★★☆</span></td>
+            <td>«Пельменная лазанья» — идеальная RU-адаптация. Пельмени — родной продукт. Формат «вирусный рецепт» хорошо мигрирует в RU.</td>
+            <td>FoodChallenge «Пельменная лазанья» с партнёрством RU food-блогеров</td>
+          </tr>
+          <tr>
+            <td><strong>Cherry Red Accent (мода)</strong><br><small>Danielle Gervino · ELLE Aug 2026</small></td>
+            <td><span class="star">★★★★☆</span></td>
+            <td>Цвет «вишнёвый» уже в маникюре (★★★★★) — синергия с модой. Осенняя актуальность высокая. RU аудитория охотно воспринимает насыщенные тона.</td>
+            <td>Цвет-рубрика «Вишнёвый сентябрь» объединяет моду + ногти на Likee</td>
+          </tr>
+          <tr>
+            <td><strong>Biscoff Cheesecake</strong><br><small>IG 297K views · TikTok топ-18</small></td>
+            <td><span class="star">★★★☆☆</span></td>
+            <td>Biscoff не всегда доступен в RU. Но «но-бейк чизкейк» — популярен. Адаптация с печеньем «Юбилейное» или «Топлёное молоко» — нативная RU-версия.</td>
+            <td>«Чизкейк без духовки» с доступными RU ингредиентами на Likee</td>
+          </tr>
+          <tr>
+            <td><strong>Multi-Layered Tops (мода)</strong><br><small>Who What Wear TikTok Trends 2026</small></td>
+            <td><span class="star">★★★☆☆</span></td>
+            <td>Тренд на плато в глобале. Умеренная адаптируемость в RU. Больший потенциал у локального осеннего layering с шарфом и пальто.</td>
+            <td>Гайд «Слои по-осеннему» с фокусом на доступные RU бренды</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <footer class="report-footer">
+    <p>
+      <strong>Likee Lifestyle Trend Scout</strong> · Неделя 35, 2026 · 25–31 августа 2026<br>
+      Источники: TikTok Discover, Instagram Reels, ELLE (Aug 19), Coveteur (Aug 12), Perfect Corp (Aug 4), NewEngen (Aug 19),
+      Who What Wear, DashSocial, Danielle Gervino, Allure, QC Makeup Academy, Heepsy, Favikon, Meetglimpse, Beauty Independent<br>
+      Политически чувствительный контент исключён. Данные верифицированы по публичным источникам.<br>
+      Сформировано: <strong>31.08.2026</strong> | Подготовлено для команды Likee Content Strategy
+    </p>
+  </footer>
+
+</main>
+</body>
+</html>
